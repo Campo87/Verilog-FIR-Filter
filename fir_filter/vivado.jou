@@ -1,0 +1,51 @@
+#-----------------------------------------------------------
+# Vivado v2021.2 (64-bit)
+# SW Build 3367213 on Tue Oct 19 02:48:09 MDT 2021
+# IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+# Start of session at: Thu Dec 30 23:01:45 2021
+# Process ID: 10852
+# Current directory: C:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent27692 C:\Users\James\Documents\Vivado\Verilog-FIR-Filter\fir_filter\fir_filter.xpr
+# Log file: C:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter/vivado.log
+# Journal file: C:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter\vivado.jou
+# Running On: DESKTOP-5TVNUIJ, OS: Windows, CPU Frequency: 3696 MHz, CPU Physical cores: 6, Host memory: 34273 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter/fir_filter.xpr
+update_compile_order -fileset sources_1
+create_bd_design "fir_bd"
+update_compile_order -fileset sources_1
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 processing_system7_0
+endgroup
+apply_bd_automation -rule xilinx.com:bd_rule:processing_system7 -config {make_external "FIXED_IO, DDR" Master "Disable" Slave "Disable" }  [get_bd_cells processing_system7_0]
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:fir_compiler:7.2 fir_compiler_0
+endgroup
+delete_bd_objs [get_bd_cells fir_compiler_0]
+create_ip -name i2s_receiver -vendor xilinx.com -library ip -version 1.0 -module_name i2s_receiver_0
+set_property -dict [list CONFIG.C_DWIDTH {16}] [get_ips i2s_receiver_0]
+generate_target {instantiation_template} [get_files c:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter/fir_filter.srcs/sources_1/ip/i2s_receiver_0/i2s_receiver_0.xci]
+update_compile_order -fileset sources_1
+generate_target all [get_files  c:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter/fir_filter.srcs/sources_1/ip/i2s_receiver_0/i2s_receiver_0.xci]
+catch { config_ip_cache -export [get_ips -all i2s_receiver_0] }
+export_ip_user_files -of_objects [get_files c:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter/fir_filter.srcs/sources_1/ip/i2s_receiver_0/i2s_receiver_0.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] c:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter/fir_filter.srcs/sources_1/ip/i2s_receiver_0/i2s_receiver_0.xci]
+launch_runs i2s_receiver_0_synth_1 -jobs 12
+wait_on_run i2s_receiver_0_synth_1
+export_simulation -of_objects [get_files c:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter/fir_filter.srcs/sources_1/ip/i2s_receiver_0/i2s_receiver_0.xci] -directory C:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter/fir_filter.ip_user_files/sim_scripts -ip_user_files_dir C:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter/fir_filter.ip_user_files -ipstatic_source_dir C:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter/fir_filter.ip_user_files/ipstatic -lib_map_path [list {modelsim=C:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter/fir_filter.cache/compile_simlib/modelsim} {questa=C:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter/fir_filter.cache/compile_simlib/questa} {riviera=C:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter/fir_filter.cache/compile_simlib/riviera} {activehdl=C:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter/fir_filter.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+create_bd_cell -type ip -vlnv xilinx.com:ip:i2s_transmitter:1.0 i2s_transmitter_0
+set_property location {1 313 -196} [get_bd_cells i2s_transmitter_0]
+export_ip_user_files -of_objects  [get_files c:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter/fir_filter.srcs/sources_1/ip/i2s_receiver_0/i2s_receiver_0.xci] -no_script -reset -force -quiet
+remove_files  -fileset i2s_receiver_0 c:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter/fir_filter.srcs/sources_1/ip/i2s_receiver_0/i2s_receiver_0.xci
+file delete -force c:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter/fir_filter.srcs/sources_1/ip/i2s_receiver_0
+file delete -force c:/Users/James/Documents/Vivado/Verilog-FIR-Filter/fir_filter/fir_filter.gen/sources_1/ip/i2s_receiver_0
+startgroup
+apply_bd_automation -rule xilinx.com:bd_rule:clkrst -config { Clk {/processing_system7_0/FCLK_CLK0 (50 MHz)} Freq {100} Ref_Clk0 {} Ref_Clk1 {} Ref_Clk2 {}}  [get_bd_pins i2s_transmitter_0/aud_mclk]
+apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config { Clk_master {Auto} Clk_slave {Auto} Clk_xbar {Auto} Master {/processing_system7_0/M_AXI_GP0} Slave {/i2s_transmitter_0/s_axi_ctrl} ddr_seg {Auto} intc_ip {New AXI Interconnect} master_apm {0}}  [get_bd_intf_pins i2s_transmitter_0/s_axi_ctrl]
+endgroup
+undo
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:i2s_receiver:1.0 i2s_receiver_0
+endgroup
+save_bd_design
